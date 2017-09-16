@@ -4,9 +4,17 @@
         <servlet-name>RegUser</servlet-name>
         <servlet-class>com.controlador.RegUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogServlet</servlet-name>
+        <servlet-class>com.controlador.LogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegUser</servlet-name>
         <url-pattern>/RegUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogServlet</servlet-name>
+        <url-pattern>/LogServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
