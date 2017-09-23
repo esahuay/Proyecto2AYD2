@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  * @author wxjoy
  */
 public class Conexion {
-    private static final String USER = "root";
-    private static final String PASSWORD = "w1j2m3";
+    private static final String USER = "ayduser";
+    private static final String PASSWORD = "123456789";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String CONEXION = "jdbc:mysql://10.0.3.192:3306/dbP2AYD2";
+    private static final String CONEXION = "jdbc:mysql://198.199.102.135:3306/ayd2";
     private Connection conexion;
     
     public void establecerConexion() throws ClassNotFoundException, SQLException{

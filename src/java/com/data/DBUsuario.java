@@ -23,7 +23,7 @@ public class DBUsuario {
     }
     
     public char guardarInformacion(String nombre, String apellido, String correo, String pwd){
-        strQuery = "INSERT INTO TB_USUARIO VALUES(?,?,?,?) ";
+        strQuery = "INSERT INTO USUARIO (nombres, apellidos, clave, correo) VALUES(?,?,?,?) ";
         char status='g';
         try {
             try {
@@ -32,10 +32,10 @@ public class DBUsuario {
                 Logger.getLogger(DBUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             stmt = conexion.getConexion().prepareStatement(strQuery);
-            stmt.setString(1, correo);
-            stmt.setString(2, nombre);
-            stmt.setString(3, apellido);
-            stmt.setString(4, pwd);
+            stmt.setString(1, nombre);
+            stmt.setString(2, apellido);
+            stmt.setString(3, pwd);
+            stmt.setString(4, correo);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBUsuario.class.getName()).log(Level.SEVERE, null, ex);
