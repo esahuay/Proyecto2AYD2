@@ -5,11 +5,19 @@
  */
 package com.controlador;
 
+import DAO.DAOAddRestImpl;
 import DAO.DAOLoginImpl;
+import DAOInterfaces.DAOAddRest;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Eliseo
  */
-public class LogServlet extends HttpServlet {
+@WebServlet(name = "AddRestaurante", urlPatterns = {"/AddRestaurante"})
+public class AddRestaurante extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +42,16 @@ public class LogServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddRestaurante</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddRestaurante at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -63,13 +81,14 @@ public class LogServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
- 
+        String nombre = request.getParameter("nrest");
+        String descripcion = request.getParameter("desc");
+        System.out.println("nomb: "+ nombre + " desc: "+descripcion);
+        
         //si el formulario falla
-        if (email.isEmpty() || password.isEmpty()) 
+        if (nombre.isEmpty() || descripcion.isEmpty()) 
         {
-            request.setAttribute("error", "Usuario y password no pueden ir vacíos");
+            request.setAttribute("error", "Usuario y descripcion no pueden ir vacíos");
             RequestDispatcher rs = request.getRequestDispatcher("/login.jsp");
             rs.forward(request, response);
         } 
@@ -78,32 +97,16 @@ public class LogServlet extends HttpServlet {
             //si el formulario pasa la validación
  
             //creamos la instancia de LoginDaoImp
-            DAOLoginImpl loginDaoImpl = new DAOLoginImpl();
+            DAOAddRestImpl AddRest = new DAOAddRestImpl();
  
             //por defecto el resultado del login es false
-            boolean res = false;
             try 
             {
-                res = loginDaoImpl.Ingresar(email, password);
-                loginDaoImpl.cerrarConexion();
-                if(res) 
-                {
-                    System.out.println("Login correcto");
-                    System.out.println("correo: "+email+" Pass: "+password);
-                    PrintWriter out = response.getWriter();
-                    out.println("Login Correcto");
-                    out.println("Usuario: "+email);
-                    out.println("Password: "+password);
-                } 
-                else 
-                {
-                    System.out.println("correo: "+email+" Pass: "+password);
-                    System.out.println("Login incorrecto");
-                    PrintWriter out = response.getWriter();
-                    out.println("Login Incorrecto");
-                    out.println("Usuario: "+email);
-                    out.println("Password: "+password);
-                }
+                System.out.println("Agrego :)");
+                AddRest.AddRest(nombre, descripcion);
+                AddRest.cerrarConexion();
+                System.out.println("paso");
+                response.sendRedirect("registrarUsuario.jsp");
             } 
             catch (Exception ex) 
             {
