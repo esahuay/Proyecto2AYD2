@@ -15,6 +15,7 @@
                 <li><a href="login.jsp"><span class="fa fa-2x fa-sign-in"></span> Iniciar Sesion</a></li>
                 <li><a href="registrarUsuario.jsp"><span class="fa fa-2x fa-edit"></span> Crear Usuario</a></li>
                 <li><a href="registrarRestaurante.jsp"><span class="fa fa-2x fa-beer"></span> Nuevo Restaurante</a></li>
+                <li><a href="registrarMenu.jsp"><span class="fa fa-2x fa-book"></span> Nuevo Menu</a></li>
             </ul>
         </div>
     </div>
