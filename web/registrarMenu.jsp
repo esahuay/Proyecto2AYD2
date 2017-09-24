@@ -18,7 +18,7 @@
          <div class="container theme-showcase" role="main">
             <br>
             <div class="jumbotron">
-                <form class="form-horizontal" action="AddRestaurante" method="post" onsubmit="return validarDatos()">
+                <form class="form-horizontal" action="addMenu" method="post" onsubmit="return validarDatos()">
                     <legend align="center">Ingrese los datos</legend>
                     <fieldset>
                         <div  class="form-group">
