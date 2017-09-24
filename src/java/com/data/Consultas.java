@@ -26,7 +26,7 @@ public class Consultas {
         conexion = new Conexion();
     }
     
-    public int guardarMenu(String nombre, String detalle, double precio, long imagen)    
+    public int guardarMenu(String nombre, String detalle, double precio, String imagen)    
     { 
         int resultado = 0;
         stmt = null;
@@ -43,7 +43,7 @@ public class Consultas {
             stmt.setString(1, nombre);
             stmt.setString(2, detalle);
             stmt.setDouble(3, precio);
-            stmt.setLong(4, imagen);
+            stmt.setString(4, imagen);
             
             if(stmt.executeUpdate()== 1)
                 resultado = 1;

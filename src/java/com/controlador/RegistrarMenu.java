@@ -6,12 +6,16 @@
 package com.controlador;
 
 import com.data.Consultas;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *
@@ -39,8 +43,19 @@ public class RegistrarMenu extends HttpServlet {
             String imagen = request.getParameter("imagen");
 
             Consultas con = new Consultas();
+            
+            File file = new File(imagen); 
+            BufferedInputStream bufferis = new BufferedInputStream(new 
+            FileInputStream(file)); 
+            int bytes = (int) file.length(); 
+            byte[] buffer = new byte[bytes]; 
+            int readBytes = bufferis.read(buffer); 
+            bufferis.close(); 
 
-            int resultado = con.guardarMenu(nombre, descripcion, Double.parseDouble(precio), Long.parseLong(imagen));
+            /*Codificamos a base 64*/ 
+            String encodedString = Base64.encodeBase64String(buffer);
+
+            int resultado = con.guardarMenu(nombre, descripcion, Double.parseDouble(precio), encodedString);
 
             switch(resultado){
                     case 1:
